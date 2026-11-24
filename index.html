@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>EduSoup – Coming Soon</title>
+  <meta name="description" content="EduSoup supports global education with free, localized tools for STEM practice materials and examinations. Coming soon.">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+
+  <style>
+    /* ---------- Local fonts (no external requests) ---------- */
+    @font-face {
+      font-family: "Roboto";
+      src: url("fonts/Roboto-Regular.ttf") format("truetype");
+      font-weight: 400; font-style: normal; font-display: swap;
+    }
+    @font-face {
+      font-family: "Roboto";
+      src: url("fonts/Roboto-Medium.ttf") format("truetype");
+      font-weight: 500; font-style: normal; font-display: swap;
+    }
+    @font-face {
+      font-family: "Merienda";
+      src: url("fonts/Merienda-Bold.ttf") format("truetype");
+      font-weight: 700; font-style: normal; font-display: swap;
+    }
+
+    /* ---------- Base ---------- */
+    :root {
+      --bg: #f1f1f1; /* UN light grey: Cool Gray 1C, RGB 241/241/241 */
+      --text: #111;
+      --red: #e8121b;
+      --btn: #46b1e1;
+      --btn-hover: #2f9fd3;
+      --navy: #1b2f45;
+    }
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body { margin: 0; }
+    body {
+      min-height: 100vh;
+      min-height: 100svh;
+      background: var(--bg);
+      color: var(--text);
+      font-family: "Roboto", system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* ---------- Coming soon (top right) ---------- */
+    .soon {
+      position: absolute;
+      top: clamp(16px, 2.5vw, 36px);
+      right: clamp(16px, 3vw, 56px);
+      text-align: center;
+      color: var(--red);
+      font-family: "Merienda", "Segoe Print", "Comic Sans MS", cursive;
+      font-weight: 700;
+      line-height: 1.2;
+      margin: 0;
+    }
+    .soon h2 {
+      margin: 0 0 clamp(14px, 2vw, 30px);
+      font-size: clamp(34px, 3.9vw, 62px);
+      font-weight: 700;
+      line-height: 1.1;
+    }
+    .soon p {
+      margin: 0;
+      font-size: clamp(17px, 1.75vw, 28px);
+      line-height: 1.45;
+    }
+
+    /* ---------- Main column ---------- */
+    main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: clamp(28px, 3.6vw, 58px) 24px 16px;
+    }
+    .brand {
+      display: block;
+      width: min(700px, 42vw);
+      height: auto;
+    }
+    .intro {
+      max-width: 630px;
+      margin: clamp(20px, 2vw, 32px) 0 0;
+      font-size: clamp(17px, 1.4vw, 22px);
+      line-height: 1.33;
+      text-align: justify;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 325px;
+      max-width: 100%;
+      height: 66px;
+      margin-top: clamp(22px, 2vw, 32px);
+      background: var(--btn);
+      color: #fff;
+      border: 2px solid var(--navy);
+      border-radius: 10px;
+      font-size: 26px;
+      font-weight: 400;
+      text-decoration: none;
+      transition: background-color .15s ease, transform .15s ease;
+    }
+    .btn:hover { background: var(--btn-hover); }
+    .btn:active { transform: translateY(1px); }
+    .btn:focus-visible { outline: 3px solid var(--navy); outline-offset: 3px; }
+
+    /* ---------- Footer ---------- */
+    footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 32px;
+      padding: 8px clamp(24px, 9.5vw, 155px) clamp(20px, 3vw, 48px);
+    }
+
+    /* Pairing per UN SDG guidelines (non-UN entity logo + SDG icon):
+       entity logo has preeminence, 0.5pt 100% black line,
+       equal space on both sides of the line. */
+    .pairing { margin: 0; text-align: center; }
+    .pairing-row {
+      --h: clamp(90px, 7.5vw, 120px);
+      display: inline-flex;
+      align-items: center;
+      height: var(--h);
+    }
+    .pairing-row .entity { height: 100%; width: auto; display: block; }
+    .pairing-row .divider {
+      width: 0;
+      height: 100%;
+      border-left: 0.5pt solid #000;
+      margin: 0 calc(var(--h) * 0.2);
+    }
+    .pairing-row .goal { height: calc(var(--h) * 0.84); width: auto; display: block; }
+    /* SDG logo: never taller than the entity logo */
+    .pairing-row .sdg  { height: calc(var(--h) * 0.72); width: auto; display: block; }
+    .pairing figcaption {
+      margin-top: 12px;
+      font-size: 13px;
+      font-weight: 500;
+    }
+
+    /* ---------- Smaller screens ---------- */
+    @media (max-width: 1180px) {
+      .soon { position: static; padding: 28px 20px 0; }
+      main { padding-top: 28px; }
+      .brand { width: min(560px, 88vw); margin-left: 0; }
+    }
+    @media (max-width: 720px) {
+      footer {
+        flex-direction: column;
+        align-items: center;
+        gap: 36px;
+        padding: 24px 20px 32px;
+      }
+      .intro { text-align: left; }
+    }
+  </style>
+</head>
+<body>
+
+  <aside class="soon" aria-label="Launch information">
+    <h2>Coming Soon!!</h2>
+    <p>Friendly Testing<br>beginning early<br>December 2026!<br>International launch<br>early 2027!!</p>
+  </aside>
+
+  <main>
+    <h1 style="margin:0">
+      <img class="brand" src="logo_text.svg" alt="EduSoup – Supporting Global Education">
+    </h1>
+
+    <p class="intro">
+      Welcome to EduSoup! We support global education by providing teachers and
+      students around the world with localized tools to instantly produce fully
+      customizable practice materials and subject examinations in STEM subjects.
+      The use of this system is free of any charges and supports a community of
+      lifelong learning everywhere. EduSoup Supports the United Nation’s
+      Sustainable Development Goals and shares their vision and promise of a
+      better world forward.
+    </p>
+
+    <!-- TODO: set the button target -->
+    <a class="btn" id="go" href="#">Let’s Go!</a>
+  </main>
+
+  <footer>
+    <figure class="pairing">
+      <div class="pairing-row">
+        <img class="entity" src="logo.svg" alt="EduSoup logo">
+        <span class="divider" aria-hidden="true"></span>
+        <img class="sdg" src="SDG_logo_square_transparent.svg" alt="Sustainable Development Goals">
+      </div>
+      <figcaption>EduSoup supports the Sustainable Development Goals</figcaption>
+    </figure>
+
+    <figure class="pairing">
+      <div class="pairing-row">
+        <img class="entity" src="logo.svg" alt="EduSoup logo">
+        <span class="divider" aria-hidden="true"></span>
+        <img class="goal" src="sdg-icon-goal4-day.svg" alt="SDG Goal 4: Quality Education">
+      </div>
+      <figcaption>EduSoup supports the Sustainable Development Goals</figcaption>
+    </figure>
+  </footer>
+
+  <script>
+    // Button target – change this once the app is live.
+    // Leave empty ("") to keep the button inactive.
+    const GO_URL = "";
+
+    const go = document.getElementById("go");
+    if (GO_URL) {
+      go.href = GO_URL;
+    } else {
+      go.addEventListener("click", e => e.preventDefault());
+      go.setAttribute("aria-disabled", "true");
+    }
+  </script>
+</body>
+</html>
